@@ -43,7 +43,7 @@ const App = () => {
         {state.loggedIn ? <Index /> : <Redirect to="/login" />}
       </Route>
       <Route path="/login">
-      {!state.loggedIn ? <Redirect to="/login" /> : <Redirect to="/home" /> }
+      {!state.loggedIn ? <Login /> : <Redirect to="/home" /> }
       </Route>
     </Switch>
   </Router>
