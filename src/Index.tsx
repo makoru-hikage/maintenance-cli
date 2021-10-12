@@ -11,7 +11,7 @@ let placeholder: Array<FloorArea> = [{
   column: 1
 }]
 
-function App() {
+const Index = () => {
 
   return (
   <div className="mx-16">
@@ -28,4 +28,4 @@ function App() {
   )
 }
 
-export default App
+export default Index
