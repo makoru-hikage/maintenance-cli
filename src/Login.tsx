@@ -1,4 +1,7 @@
 import { useState, ChangeEvent } from "react"
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
+import { Redirect } from "react-router";
 
 interface CredentialsInterface {
   username: string,
@@ -6,6 +9,9 @@ interface CredentialsInterface {
 }
 
 const Login = () => {
+
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+
   const [credentials, setState] = useState<CredentialsInterface>({
     username: "",
     password: ""
@@ -15,6 +21,27 @@ const Login = () => {
     setState({
       ...credentials,
       [e.target.name]: e.target.value
+    })
+  }
+
+  const storeToken = (token: string) => {
+    setCookie("token", token, {sameSite: 'strict'})
+  }
+
+  const login = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
+    const baseUrl = import.meta.env.VITE_BACKEND_URL
+    axios({
+      url: baseUrl + '/api/login',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: credentials
+    })
+    .then((response) => {
+      storeToken(response.data['token'])
     })
   }
 
@@ -29,7 +56,7 @@ const Login = () => {
         <input onChange={updateField} type="password" name="password" id="password-field" value={credentials.password} className="border shadow table-cell"/>
       </div>
       <div className="m-4">
-        <button id="login-button" className="text-black p-2 border align-end bg-gray-400">Login</button>
+        <button onClick={login} id="login-button" className="text-black p-2 border align-end bg-gray-400">Login</button>
       </div>
     </form>
   </div>
