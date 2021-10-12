@@ -24,7 +24,7 @@ export const FloorAreaTable: FunctionComponent<Props>= ({floorAreas}) => {
     </tr>
   </thead>
   <tbody>
-    {floorAreas.map(area => <FloorAreaTableRow floorArea={area}/>)}
+    {floorAreas.map(area => <FloorAreaTableRow floorArea={area} key={area.areaCode}/>)}
   </tbody>
 </table>
 }

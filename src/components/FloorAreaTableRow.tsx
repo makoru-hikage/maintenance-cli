@@ -16,7 +16,7 @@ interface Props {
 
 export const FloorAreaTableRow: React.FC<Props> = ({floorArea}) => {
 
-  return <tr key="React.string(areaCode)">
+  return <tr>
     <td className="index-td">{floorArea.areaCode}</td>
     <td className="index-td">{floorArea.description}</td>
     <td className="index-td">{floorArea.floor}</td>
