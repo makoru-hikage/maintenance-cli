@@ -1,10 +1,13 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.skel-outline {
+  @apply border-4 border-solid dark:border-white border-black;
+}
+
+.index-th {
+  @apply dark:bg-gray-600 bg-gray-300 p-2 dark:text-white text-black font-bold md:border text-left block md:table-cell
+}
+
+.index-td {
+  @apply p-2 md:border text-left block md:table-cell text-black dark:text-white
 }
 
 code {
