@@ -1,5 +1,5 @@
 import { useCookies } from 'react-cookie'
-import { useState } from 'react'
+import { FC } from 'react'
 import { Redirect } from 'react-router'
 
 import { FloorAreaTable } from './components/FloorAreaTable'
@@ -12,21 +12,17 @@ let placeholder: Array<FloorArea> = [{
   column: 1
 }]
 
+interface Props {
+  loggedIn: boolean
+}
+
 const Index = () => {
 
   const [cookies, setCookie, removeCookie] = useCookies(['token'])
 
-  const [loggedIn, setLoggedIn] = useState({
-    loggedIn: false
-  })
-
   const logout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     removeCookie("token")
-  }
-
-  if (loggedIn.loggedIn){
-    return <Redirect to="/login" />
   }
 
   return (
