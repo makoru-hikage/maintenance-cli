@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from "react"
 import axios from 'axios'
 import { useCookies } from 'react-cookie'
-import { Redirect } from "react-router";
+import { Redirect } from "react-router"
 
 interface CredentialsInterface {
   username: string,
@@ -14,7 +14,10 @@ const Login = () => {
 
   const [credentials, setState] = useState<CredentialsInterface>({
     username: "",
-    password: ""
+    password: "",
+  })
+  const [loggedIn, setLoggedIn] = useState({
+    loggedIn: false
   })
 
   const updateField = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +31,7 @@ const Login = () => {
     setCookie("token", token, {sameSite: 'strict'})
   }
 
-  const login = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
     const baseUrl = import.meta.env.VITE_BACKEND_URL
@@ -42,7 +45,14 @@ const Login = () => {
     })
     .then((response) => {
       storeToken(response.data['token'])
+      setLoggedIn( x => ({
+        loggedIn: true
+      }))
     })
+  }
+
+  if (loggedIn.loggedIn){
+    return <Redirect to="/" />
   }
 
   return <div className="inline-block align-bottom bg-gray-400 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
