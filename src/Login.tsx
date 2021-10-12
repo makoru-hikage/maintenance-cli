@@ -1,11 +1,9 @@
-import {render} from "react-dom"
 import { useState, ChangeEvent } from "react"
 
 interface CredentialsInterface {
   username: string,
   password: string
 }
-
 
 const Login = () => {
   const [credentials, setState] = useState<CredentialsInterface>({
@@ -35,5 +33,6 @@ const Login = () => {
       </div>
     </form>
   </div>
-
 }
+
+export default Login
